@@ -20,15 +20,14 @@
                         name="searchType"
                         th:id="${column.key}"
                         th:value="${column.key}"
-                        th:checked="${column.key == 'all'}"/>
+                        th:checked="${selectedType} ? ${column.key == selectedType} : ${column.key == 'all'}"/>
                 <label th:for="${column.key}" th:text="${column.value}"></label>
             </span>
-
         </p>
 
         <p>
             <label for="searchTerm">Keyword:</label>
-            <input type="text" name="searchTerm" id="searchTerm" />
+            <input type="text" name="searchTerm" id="searchTerm" th:value="${selectedTerm == null ? '' : selectedTerm}"/>
         </p>
 
         <input type="submit" value="Search" />
@@ -37,6 +36,9 @@
     <hr />
 
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
+
+    <div th:replace="fragments :: display-jobs"></div>
+
 
 </div>
 
